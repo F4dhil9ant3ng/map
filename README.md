@@ -14,15 +14,16 @@ See how it work on www.h2openmap.org/map
 - icons are dinamically selected due to data
 - popup show downloadPDF link
 - draw instrument to determine distances
+- download csv for internal database
 
 
 ###ToDo list:
 
-- Generate a better PDF
-- convert SqLite to MySql internal data storage
+- better PDF
 - insert if/else in overpass turbo query to do not display data already showed by internal db
 - pass protected edit form for internal data
-- download csv for internal database
+- convert draw tool in measurement instruments ( see issues)
+
 
 
 
