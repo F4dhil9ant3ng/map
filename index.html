@@ -17,14 +17,17 @@
     <script src='js/vfs_fonts.js'></script>
     <script src='js/jquery.js'></script>
     <script src='js/html2pdfmake.js'></script>
+    <script src='js/L.Control.Window.js'></script>
 
 
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+    <link rel="stylesheet" href="css/L.Control.Window.css" />
     <link rel="stylesheet" href="css/stylesheet.css" />
     <link rel="stylesheet" href="css/easy-button.css" />
     <link rel="stylesheet" href="css/leaflet-search.css" />
     <link rel="stylesheet" href="css/markercluster.css" />
     <link rel="stylesheet" href="css/leaflet.draw.css" />
+    <link rel="stylesheet" href="css/L.Control.Window.css" />
 
     
 
@@ -72,8 +75,15 @@
     <img src="icons/well_no_yes.png" style="display:inline-block"/> water well - no water<br/>
     <img src="icons/well_unknown.png" style="display:inline-block"/> water well - unknow status<br/>
 
-    <div class="note">this map is a beta version, some issue still need work. <br/>
-    please refer to <a href="https://github.com/H2OpenMap" target="blank">github H2OpenMap repository </a></div>
+    <div class=''><p>download data:</p>
+    <a href="data/h2openmap_data.csv" download="true" ><img src="icons/others/icon_file_csv.png" class='icon_file'/></a>
+    <a href="data/h2openmap_data.json" download="true" ><img src="icons/others/icon_file_json.png" class='icon_file'/></a>
+    <a href="data/h2openmap_data.xml" download="true" ><img src="icons/others/icon_file_xml.png" class='icon_file'/></a>
+    </div>
+
+    <div class="note">this map is still under construction, please report bugs and refer to <a href="https://github.com/H2OpenMap" target="blank">github H2OpenMap repository </a> for the code.
+    </div>
+    <div align="center"><a href="http://creativecommons.org/licenses/by-nc/4.0/" target="blank"><img src="icons/others/cc_2.png" width="70px" /></a>
 </div>
 
 <script>
@@ -148,9 +158,12 @@ function buildPopup(marker, hasImage, ll) {
         var markerText = '';
         var feature = marker['properties'];
 
+        pdfCounter++;
+
         var image = feature['img'];
         if (image === null || image == '' || hasImage == false) image = 'default.png';
-        markerText+='<a href="img/'+image+'.jpg" class="lightbox"><img src="img/'+image+'" /></a>';
+        pdfPhoto[pdfCounter]=image;
+        markerText+='<a href="#" class="lightbox" onclick="largePhoto(pdfPhoto['+pdfCounter+'])"><img src="img/'+image+'" /></a>';
         
         if(feature ['survey:date']!='')
             markerText+='<p><b>survey date =</b> '+feature['survey:date']+'<br/>';
@@ -213,15 +226,20 @@ function buildPopup(marker, hasImage, ll) {
         if (feature ['description']!='')
         markerText+='<p><b>note = </b>'+feature ['description']+'</p>'; //campo note
 
-        pdfCounter++;
-        pdfPhoto[pdfCounter]=image;
         pdfSurvey[pdfCounter]= feature['ref:h2openmap'];
-
         pdfTexts[pdfCounter]=markerText;
+
 
         markerText+='<p><a href="#" onclick="buildPdf(pdfTexts['+pdfCounter+'],pdfPhoto['+pdfCounter+'],pdfSurvey['+pdfCounter+'])" class="">download PDF</a></p>';
 
         return markerText;
+}
+
+function largePhoto(photo, survey){
+    var win =  L.control.window(map,{/*title:'id: '+survey,*/maxWidth:1000,modal: true})
+    .content('<img src="img/'+photo+'.jpg" style="width:700px;height:700px"/>')
+    //.prompt({callback:function(){alert('This is called after OK click!')}})
+    .show()
 }
 
 function buildPdf (text, photo, survey) {
@@ -249,9 +267,10 @@ function buildPdf (text, photo, survey) {
                 columns: [
                     '',
                     { 
-                        text: 'h2openmap.org - rasmataonlus.org', 
+                        text: 'http://wwwh2openmap.org',
                         alignment: 'right',
-                        margin: [0, 0, 30, 0]
+                        margin: [0, 0, 30, 0],
+                        color: '#0078A8'
 
                     }
                 ]
@@ -264,8 +283,8 @@ function buildPdf (text, photo, survey) {
                 },
                 {
                     image: photo,
-                    width:300,
-                    margin: [0, 0, 0, 10]
+                    fit: [300, 300],
+                    margin: [0, 0, 0, 20]
                 },
                 content
             ]
