@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="utf8" />
@@ -11,13 +11,15 @@
     <script src='js/leaflet-layerjson.min.js'></script>
     <script src='js/leaflet-search.js'></script>
     <script src='js/easy-button.js'></script>
-    <script src='js/leaflet.markercluster.js'></script>
+    <!--<script src='js/leaflet.markercluster.js'></script>-->
     <script src='js/leaflet.draw.js'></script>
     <script src='js/pdfmake.min.js'></script>
     <script src='js/vfs_fonts.js'></script>
     <script src='js/jquery.js'></script>
     <script src='js/html2pdfmake.js'></script>
     <script src='js/L.Control.Window.js'></script>
+    <script src='js/leaflet.measurecontrol.js'></script>
+    <script src='js/heatmap.min.js'></script>
 
 
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
@@ -25,10 +27,10 @@
     <link rel="stylesheet" href="css/stylesheet.css" />
     <link rel="stylesheet" href="css/easy-button.css" />
     <link rel="stylesheet" href="css/leaflet-search.css" />
-    <link rel="stylesheet" href="css/markercluster.css" />
+    <!--<link rel="stylesheet" href="css/markercluster.css" />-->
     <link rel="stylesheet" href="css/leaflet.draw.css" />
     <link rel="stylesheet" href="css/L.Control.Window.css" />
-
+    <link rel="stylesheet" href="css/leaflet.measurecontrol.css" />
     
 
 </head>
@@ -36,44 +38,44 @@
 <!--<div class="help">help</div>-->
 
 <div id="map"></div>
-<div id="logo"><img src="H2OpenMap_logo.png" style="width:100px;height:100px;" /></div>
+<div id="logo"><img src="H2OpenMap_logo_2.png" style="width:100px;height:100px;" /></div>
 <div id="legend">
     
     <a class="legend_close_button" href="#" onclick="$('#legend').css('display','none');">×</a>
 
-    <img src="icons/flywheel_yes_no.png" style="display:inline-block"/> flyweel - drinking water yes<br/>
-    <img src="icons/flywheel_no_no.png" style="display:inline-block"/> flyweel drinking water no<br/>
-    <img src="icons/flywheel_no_yes.png" style="display:inline-block"/> flyweel - no water<br/>
-    <img src="icons/flywheel_unknown.png" style="display:inline-block"/> flyweel - unknow status<br/>
+    <img src="icons/flywheel_yes_no.png"/> flyweel - drinking water yes<br/>
+    <img src="icons/flywheel_no_no.png"/> flyweel drinking water no<br/>
+    <img src="icons/flywheel_no_yes.png"/> flyweel - no water<br/>
+    <img src="icons/flywheel_unknown.png"/> flyweel - unknow status<br/>
     <br/>
-    <img src="icons/lever_yes_no.png" style="display:inline-block"/> lever pump - drinking water yes<br/>
-    <img src="icons/lever_no_no.png" style="display:inline-block"/> lever pump - drinking water no<br/>
-    <img src="icons/lever_no_yes.png" style="display:inline-block"/> lever pump - no water<br/>
-    <img src="icons/lever_unknown.png" style="display:inline-block"/> lever pump - unknow status<br/>
+    <img src="icons/lever_yes_no.png"/> lever pump - drinking water yes<br/>
+    <img src="icons/lever_no_no.png"/> lever pump - drinking water no<br/>
+    <img src="icons/lever_no_yes.png"/> lever pump - no water<br/>
+    <img src="icons/lever_unknown.png"/> lever pump - unknow status<br/>
     <br/>
-    <img src="icons/pedal_yes_no.png" style="display:inline-block"/> pedal - drinking water yes<br/>
-    <img src="icons/pedal_no_no.png" style="display:inline-block"/> pedal - drinking water no<br/>
-    <img src="icons/pedal_no_yes.png" style="display:inline-block"/> pedal - no water<br/>
-    <img src="icons/pedal_unknown.png" style="display:inline-block"/> pedal - unknow status<br/>
+    <img src="icons/pedal_yes_no.png"/> pedal - drinking water yes<br/>
+    <img src="icons/pedal_no_no.png"/> pedal - drinking water no<br/>
+    <img src="icons/pedal_no_yes.png"/> pedal - no water<br/>
+    <img src="icons/pedal_unknown.png"/> pedal - unknow status<br/>
     <br/>
-    <img src="icons/pump_yes_no.png" style="display:inline-block"/> unknown pump - drinking water yes<br/>
-    <img src="icons/pump_no_no.png" style="display:inline-block"/> unknown pump - drinking water no<br/>
-    <img src="icons/pump_no_yes.png" style="display:inline-block"/> unknown pump - no water<br/>
-    <img src="icons/pump_unknown.png" style="display:inline-block"/> unknown pump - unknow status<br/>
+    <img src="icons/pump_yes_no.png"/> unknown pump - drinking water yes<br/>
+    <img src="icons/pump_no_no.png"/> unknown pump - drinking water no<br/>
+    <img src="icons/pump_no_yes.png"/> unknown pump - no water<br/>
+    <img src="icons/pump_unknown.png"/> unknown pump - unknow status<br/>
     <br/>
-    <img src="icons/tap_yes_no.png" style="display:inline-block"/> water tap - drinking water yes<br/>
-    <img src="icons/tap_no_no.png" style="display:inline-block"/> water tap - drinking water no<br/>
-    <img src="icons/tap_no_yes.png" style="display:inline-block"/> water tap - no water<br/>
-    <img src="icons/tap_unknown.png" style="display:inline-block"/> water tap - unknow status<br/>
+    <img src="icons/tap_yes_no.png"/> water tap - drinking water yes<br/>
+    <img src="icons/tap_no_no.png"/> water tap - drinking water no<br/>
+    <img src="icons/tap_no_yes.png"/> water tap - no water<br/>
+    <img src="icons/tap_unknown.png"/> water tap - unknow status<br/>
     <br/>
-    <img src="icons/water_well_yes_no.png" style="display:inline-block"/> unknown water well - drinking water yes<br/>
-    <img src="icons/water_well_no_no.png" style="display:inline-block"/> unknown water well - drinking water no<br/>
-    <img src="icons/water_well_unknown.png" style="display:inline-block"/> unknown water well - unknow status<br/>
+    <img src="icons/water_well_yes_no.png"/> unknown water well - drinking water yes<br/>
+    <img src="icons/water_well_no_no.png"/> unknown water well - drinking water no<br/>
+    <img src="icons/water_well_unknown.png"/> unknown water well - unknow status<br/>
     <br/>
-    <img src="icons/well_yes_no.png" style="display:inline-block"/> water well - drinking water yes<br/>
-    <img src="icons/well_no_no.png" style="display:inline-block"/> water well - drinking water no<br/>
-    <img src="icons/well_no_yes.png" style="display:inline-block"/> water well - no water<br/>
-    <img src="icons/well_unknown.png" style="display:inline-block"/> water well - unknow status<br/>
+    <img src="icons/well_yes_no.png"/> water well - drinking water yes<br/>
+    <img src="icons/well_no_no.png"/> water well - drinking water no<br/>
+    <img src="icons/well_no_yes.png" /> water well - no water<br/>
+    <img src="icons/well_unknown.png"/> water well - unknow status<br/>
 
     <div class=''><p>download data:</p>
     <a href="data/h2openmap_data.csv" download="true" ><img src="icons/others/icon_file_csv.png" class='icon_file'/></a>
@@ -312,6 +314,10 @@ var OpenStreetMap_HOT = L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
 });
 
+var Thunderforest_Landscape = L.tileLayer('http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png', {
+	attribution: '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+});
+
 var googleSat = L.tileLayer('https://mts{s}.google.com/vt/lyrs=s@186112443&hl=x-local&src=app&x={x}&y={y}&z={z}&s=Galile', {
                     subdomains: '0123',
                     attribution: '&copy; Google Maps'
@@ -324,6 +330,7 @@ L.easyButton( '<span class="symbol">&equiv;</span>', function(){
 var baseMaps= {
     "OpenStreetMap": osmTile,
     "HOT" : OpenStreetMap_HOT,
+    "landscape":Thunderforest_Landscape,
     "Gray scale" : OpenStreetMap_BlackAndWhite,
     "Google Satellite": googleSat,
 };
@@ -350,7 +357,7 @@ layerControl.addOverlay(geojson, "H2OpenMap");
 map.fitBounds(geojson.getBounds(), {'padding': [10,10]});
 });
 
-    var layerjson = L.layerJSON({
+var layerjson = L.layerJSON({
         url: 'http://overpass-api.de/api/interpreter?data=[out:json];node({lat1},{lon1},{lat2},{lon2})[man_made=water_well];out;',
         propertyItems: 'elements',
         propertyTitle: 'tags.man_made',
@@ -371,11 +378,12 @@ map.fitBounds(geojson.getBounds(), {'padding': [10,10]});
            var icon = chooseIcon(data.tags);
            return new h2icon( {iconUrl: icon} );
         }
-    });
-    //.addTo(map);
-    layerControl.addOverlay(layerjson, "OSM Data");
+});
+    
+//.addTo(map);
+layerControl.addOverlay(layerjson, "OSM Data");
 
-    map.addControl( new L.Control.Search({
+map.addControl( new L.Control.Search({
             url: 'http://nominatim.openstreetmap.org/search?format=json&q={s}',
             jsonpParam: 'json_callback',
             propertyName: 'display_name',
@@ -386,9 +394,11 @@ map.fitBounds(geojson.getBounds(), {'padding': [10,10]});
             autoCollapse: true,
             minLength: 2,
             zoom:13
-        }) );
+}) );
 
-    var drawnItems = new L.FeatureGroup();
+var measure = L.Control.measureControl().addTo(map);
+
+var drawnItems = new L.FeatureGroup();
         map.addLayer(drawnItems);
 
         var drawControl = new L.Control.Draw({
@@ -397,18 +407,20 @@ map.fitBounds(geojson.getBounds(), {'padding': [10,10]});
                 polygon: false,
                 rectangle: false,
                 marker:false,
-                polyline: {
+                polyline: false
+                    /*{
                     shapeOptions: {
                         color: '#0078A8',
                         weight: 5
                         },
                     metric: true,
                     guidelineDistance:20,
-                },
+                    }*/,
                 circle: {
                     shapeOptions: {
                         stroke: true,
                         color: '#0078A8',
+                        dashArray: '5, 5',
                         weight: 1,
                         opacity: 0.5,
                         fill: true,
@@ -425,6 +437,7 @@ map.fitBounds(geojson.getBounds(), {'padding': [10,10]});
             }
         });
         map.addControl(drawControl);
+
 
         map.on('draw:created', function (e) {
             var type = e.layerType,
