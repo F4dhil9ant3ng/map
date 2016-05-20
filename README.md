@@ -23,6 +23,7 @@ See how it work on www.h2openmap.org/map
 - insert if/else in overpass turbo query to do not display data already showed by internal db
 - pass protected edit form for internal data
 - convert draw tool in measurement instruments ( see issues)
+- add two heatmaps, one for drinking_water=yes, one for drinking_water=no
 
 
 
