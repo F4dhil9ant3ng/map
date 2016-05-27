@@ -19,7 +19,7 @@
     <script src='js/html2pdfmake.js'></script>
     <script src='js/L.Control.Window.js'></script>
     <script src='js/leaflet.measurecontrol.js'></script>
-    <script src='js/heatmap.min.js'></script>
+    <script src='js/heatmap.js'></script>
     <script src='js/leaflet-heatmap.js'></script>
 
 
@@ -454,8 +454,8 @@ var drawnItems = new L.FeatureGroup();
 /* Heatmap! */
 var cfg = {
     // radius should be small ONLY if scaleRadius is true (or small radius is intended)
-    "radius": 0.005,
-    "maxOpacity": .8, 
+    "radius": 0.0065,//almost 500m cloud
+    "maxOpacity": .6, 
     // scales the radius based on map zoom
     "scaleRadius": true, 
     // if set to false the heatmap uses the global maximum for colorization
@@ -467,7 +467,14 @@ var cfg = {
     // which field name in your data represents the longitude - default "lng"
     lngField: 'lng',
     // which field name in your data represents the data value - default "value"
-    valueField: 'count'
+    valueField: 'count',
+    gradient: {
+        // enter n keys between 0 and 1 here
+        // for gradient color customization
+        '1': '#00ccff',// 100% blue
+        '0.9': '#66e0ff',// 30% blue
+        '.3': '#e6faff'//5% blue
+    }
 };
 
 $.getJSON('api.php', {'wells': '1'}, function(remoteData){    
